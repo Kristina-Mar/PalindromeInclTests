@@ -22,18 +22,15 @@ namespace Palindrome
             // The string is converted to lowercase and only letters and numbers are left.
             // This way, the method is able to check phrases/sentences as well.
             text = Regex.Replace(text, "[^A-Za-z0-9]", "").ToLower();
-            if (text.Length == 2)
-            {
-                return text.Substring(0, 1) == text.Substring(text.Length - 1);
-            }
-            else if (text.Length == 1)
+            if (text.Length <= 1)
             {
                 return true;
             }
-            else
+            if (text.Substring(0, 1) != text.Substring(text.Length - 1))
             {
-                return text.Substring(0, 1) == text.Substring(text.Length - 1) && IsItAPalindrome(text.Substring(1, text.Length - 2));
+                return false;
             }
+            return  IsItAPalindrome(text.Substring(1, text.Length - 2));
         }
     }
 }
